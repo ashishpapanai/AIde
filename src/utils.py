@@ -168,6 +168,8 @@ class Util:
 
     def speak(self):
         engine = p.init()
+        voices = engine.getProperty('voices')
+        engine.setProperty('voice', voices[1].id) 
         while True:
             with open("./write.txt", "r") as f:
                 s = f.read()

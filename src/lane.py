@@ -21,9 +21,11 @@ class Lane:
                 break'''
 
     def run(self, video):
-        video2 = cv2.VideoCapture(r'E:\road-vision-ai\data\data.mp4')
+        #video2 = cv2.VideoCapture(r'E:\road-vision-ai\data\data.mp4')
         while(True):
             ret, frame = video.read()
+            if frame is None:
+                break
             frame = cv2.resize(frame, (800, 600))
             if ret == True:
                 # Display the resulting frame
@@ -31,7 +33,7 @@ class Lane:
                 # Press Q on keyboard to  exit
             if cv2.waitKey(25) & 0xFF == ord('q'):
                 break
-        video2.release()
+        #video2.release()
         cv2.destroyAllWindows()
 
     def detect(self, screen):
@@ -89,15 +91,15 @@ class Lane:
             if (results[0] > 400):
                 with open("write.txt", "w") as f:
                     f.write("Turn Left")
-                    print("Turn Left")
+                    #print("Turn Left")
             else:
                 with open("write.txt", "w") as f:
                     f.write("Turn Right")
-                    print("Turn Right")
+                    #print("Turn Right")
         else:
             with open("write.txt", "w") as f:
                 f.write("Go straight")
-                print("Go straight")
+                #print("Go straight")
 
         equ1, polyx1, polyy1 = self.util.polyReg(filterl2x, filterl2y)
 
