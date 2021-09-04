@@ -1,5 +1,5 @@
 ## Road Vision AI:
-Helps you make a decision based on your driving lane. The lane is dected by Canny edge detector. 
+Helps visaully challenged make a decision based on your driving lane. The lane is dected by Canny edge detector. 
 ### Getting started:
 #### Set up a virutal environment: 
 - For Linux and Mac OS:
