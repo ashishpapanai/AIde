@@ -79,3 +79,71 @@ class Util:
         xcors2 = xcors2/count
         ycors2 = ycors2/count
         return (int(xcors1), int(ycors1), int(xcors2), int(ycors2))
+
+    def roi(self, img, vert):  # region of interest
+        mask = np.zeros_like(img)
+        cv2.fillPoly(mask, vert, 255)
+        return cv2.bitwise_and(img, mask)
+
+    def edgeDetect(self, img):  # detect edges in the image
+        edges = cv2.Canny(img, 250, 300)  # canny's edge detection algorithm
+        #print(cv2.GaussianBlur(edges, (3,3), 0))
+        return cv2.GaussianBlur(edges, (3, 3), 0)
+
+    def averageLanes(self, lines):
+        try:
+            ycor = []
+
+            for i in lines:
+                for x in i:
+                    ycor.append(x[1])
+                    ycor.append(x[3])
+
+            minY = min(ycor)
+            maxY = 600
+            linesDict = {}
+            finalLines = {}
+            lineCount = {}
+            for count, i in enumerate(lines):
+                for x in i:
+
+                    xcors = (x[0], x[2])
+                    ycors = (x[1], x[3])
+
+                    A = np.vstack([xcors, np.ones(len(xcors))]).T
+                    m, b = np.linalg.lstsq(A, ycors)[0]
+                    x1 = (minY-b) / m
+                    x2 = (maxY-b) / m
+                    linesDict[count] = [m, b, [int(x1), minY, int(x2), maxY]]
+            status = False
+            for i in linesDict:
+                finalLinesCopy = finalLines.copy()
+                m = linesDict[i][0]
+                b = linesDict[i][1]
+                line = linesDict[i][2]
+                if len(finalLines) == 0:
+                    finalLines[m] = [[m, b, line]]
+                else:
+                    status = False
+                    for x in finalLinesCopy:
+                        if not status:
+                            if abs(x*1.2) > abs(m) > abs(x*0.8):
+                                if abs(finalLinesCopy[x][0][1]*1.2) > abs(b) > abs(finalLinesCopy[x][0][1]*0.8):
+                                    finalLines[x].append([m, b, line])
+                                    status = True
+                                    break
+                            else:
+                                finalLines[m] = [[m, b, line]]
+            for i in finalLines:
+                lineCount[i] = len(finalLines[i])
+            extremes = sorted(lineCount.items(), key=lambda item: item[1])[
+                ::-1][:2]
+            lane1 = extremes[0][0]
+            lane2 = extremes[1][0]
+            l1x1, l1y1, l1x2, l1y2 = self.average(finalLines[lane1])
+            l2x1, l2y1, l2x2, l2y2 = self.average(finalLines[lane2])
+            allxcors = [[l1x1, l1x2], [l2x1, l2x2]]
+            allycors = [[l1y1, l1y2], [l2y1, l2y2]]
+            return allxcors, allycors
+        except Exception as e:
+            raise Exception(e)
