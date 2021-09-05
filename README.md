@@ -13,9 +13,9 @@ Helps visaully challenged make a decision based on your driving lane. The lane i
 - Create a virtual environment using pip for Windows:
     ```sh
     py -m pip install --user virtualenv
-    # Create a virtual environment
+    REM Create a virtual environment
     py -m venv env
-    # Activate the virtual environment
+    REM Activate the virtual environment
     .\env\Scripts\activate
     ```
 #### Install Dependecies:
