@@ -2,3 +2,6 @@ env
 __pycache__
 demo
 __pycache__
+data.zip
+.ipynb_checkpoints
+data
