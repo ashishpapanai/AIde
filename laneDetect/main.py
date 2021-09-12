@@ -6,7 +6,7 @@ import pyttsx3 as p
 from utils import Util
 
 if __name__ == "__main__":
-    video = cv2.VideoCapture(r'E:\road-vision-ai\data2\data.mp4') # replace with the full path of video
+    video = cv2.VideoCapture(r'\data\data.mp4') # replace with the full path of video
     lane = Lane(video)
     lane.run(video)
     util = Util()
