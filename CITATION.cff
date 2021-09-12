@@ -1,14 +1,8 @@
 authors:
-  - 
-    family-names: Papanai
+  - family-names: Papanai
     given-names: Ashish
-    orcid: https://orcid.org/0000-0002-0764-2968
-  - 
-    family-names: Kaushik
+  - family-names: Kaushik
     given-names: Harsh
-    orcid:
+cff-version: 0.0.1
+message: "If you use this code, please cite it using these metadata."
 title: "Road Vision AI"
-version: 1.0.0
-doi: 
-date-released: 
-message: "If you use this software, please cite it using this conference paper."
