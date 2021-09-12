@@ -6,3 +6,6 @@ data.zip
 .ipynb_checkpoints
 data
 retinanet
+yolov3.weights
+darknet
+model.h5
