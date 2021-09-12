@@ -166,12 +166,12 @@ class Util:
 
         return allxcors, allycors
 
-    def speak(self):
+    def speak(self, path = "./write.txt"):
         engine = p.init()
         voices = engine.getProperty('voices')
         engine.setProperty('voice', voices[1].id) 
         while True:
-            with open("./write.txt", "r") as f:
+            with open(path, "r") as f:
                 s = f.read()
             if s == "Done":
                 break

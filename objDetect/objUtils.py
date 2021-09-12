@@ -4,12 +4,14 @@ from keras.preprocessing.image import load_img
 from keras.preprocessing.image import img_to_array
 from matplotlib import pyplot
 from matplotlib.patches import Rectangle
-
+import time
+import pyttsx3 as p
 
 class Utils:
     def __init__(self):
         pass
-
+    
+    flag = 0
     def sigmoid(x):
         return 1. / (1. + np.exp(-x))
 
@@ -124,7 +126,27 @@ class Utils:
             ax.add_patch(rect)
             label = "%s (%.3f)" % (v_labels[i], v_scores[i])
             pyplot.text(x1, y1, label, color='white')
-        pyplot.show()
+        '''Uncomment the line below to show the image'''
+        #pyplot.show()
+    
+    def speak(path = "./object.txt"):
+        engine = p.init()
+        voices = engine.getProperty('voices')
+        engine.setProperty('voice', voices[1].id) 
+        while True:
+            with open(path, "r") as f:
+                s = f.read()
+            if s == "Done":
+                break
+            if Utils.flag < 3:
+                engine.say(s)
+                engine.runAndWait()
+                time.sleep(1)
+                Utils.flag = Utils.flag + 1
+            else:
+                engine.stop()
+                break
+
 
 class BoundBox:
     def __init__(self, xmin, ymin, xmax, ymax, objness=None, classes=None):
