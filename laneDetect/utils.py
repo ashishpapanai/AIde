@@ -8,7 +8,7 @@ from numpy.linalg import lstsq
 
 class Util:
     def __init__(self):
-        self.flag = 0 
+        self.flag = 0
 
     # tells if the slope is increasing or decreasing.
     def navigationSlope(self, x1, y1, x2, y2):
@@ -53,15 +53,18 @@ class Util:
         y = b0 + b1 * x
 
         return b1, b0
-
+        
     def polyReg(self, xcors, ycors):
-        def func(x, a, b, c): return a*(x**2) + (b*x) + c
+        def func(x, a, b, c):
+            return (a*(x**2)) + (b*x) + c
         time = np.array(xcors)
         avg = np.array(ycors)
-        initialGuess = [5, 5, -.01]  # random
+        initialGuess = [5, 5, -.01]
+        guessedFactors = [func(x, *initialGuess) for x in time]
         popt, pcov = curve_fit(func, time, avg, initialGuess)
         cont = np.linspace(min(time), max(time), 50)
         fittedData = [func(x, *popt) for x in cont]
+
         xcors = []
         ycors = []
         for count, i in enumerate(cont):
@@ -166,10 +169,10 @@ class Util:
 
         return allxcors, allycors
 
-    def speak(self, path = "./write.txt"):
+    def speak(self, path="./write.txt"):
         engine = p.init()
         voices = engine.getProperty('voices')
-        engine.setProperty('voice', voices[1].id) 
+        engine.setProperty('voice', voices[1].id)
         while True:
             with open(path, "r") as f:
                 s = f.read()
