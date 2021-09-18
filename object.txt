@@ -1,2 +1,3 @@
-Careful, traffic light ahead.
-Careful, car ahead.
+Careful, keyboard ahead.
+Careful, laptop ahead.
+Careful, remote ahead.

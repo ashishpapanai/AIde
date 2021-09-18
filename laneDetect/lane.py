@@ -11,14 +11,6 @@ class Lane:
     def __init__(self, path):
         self.path = path
         self.util = Util()
-        '''while(True):
-            ret, frame = video.read()
-            if ret == True:
-                # Display the resulting frame
-                cv2.imshow('Frame', frame)
-                # Press Q on keyboard to  exit
-            if cv2.waitKey(25) & 0xFF == ord('q'):
-                break'''
 
     def run(self, path):
         cap = cv2.VideoCapture(path)
@@ -28,6 +20,7 @@ class Lane:
             ret, frame = cap.read()
             if ret == True:
                 # Display the resulting frame
+                frame = cv2.resize(frame, (800, 600))
                 self.detect(frame)
                 cv2.imshow('Frame', frame)
                 # Press Q on keyboard to  exit

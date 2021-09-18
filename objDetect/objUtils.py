@@ -127,7 +127,7 @@ class Utils:
             label = "%s (%.3f)" % (v_labels[i], v_scores[i])
             pyplot.text(x1, y1, label, color='white')
         '''Uncomment the line below to show the image'''
-        #pyplot.show()
+        pyplot.show()
     
     def speak(path = "./object.txt"):
         engine = p.init()

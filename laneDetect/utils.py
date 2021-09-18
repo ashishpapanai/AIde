@@ -53,18 +53,15 @@ class Util:
         y = b0 + b1 * x
 
         return b1, b0
-        
+
     def polyReg(self, xcors, ycors):
-        def func(x, a, b, c):
-            return (a*(x**2)) + (b*x) + c
+        def func(x, a, b, c): return a*(x**2) + (b*x) + c
         time = np.array(xcors)
         avg = np.array(ycors)
-        initialGuess = [5, 5, -.01]
-        guessedFactors = [func(x, *initialGuess) for x in time]
+        initialGuess = [5, 5, -.01]  # random
         popt, pcov = curve_fit(func, time, avg, initialGuess)
         cont = np.linspace(min(time), max(time), 50)
         fittedData = [func(x, *popt) for x in cont]
-
         xcors = []
         ycors = []
         for count, i in enumerate(cont):
