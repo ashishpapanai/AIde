@@ -1,3 +1,2 @@
-Careful, laptop ahead.
-Careful, sink ahead.
-Careful, oven ahead.
+Careful, car ahead.
+Careful, person ahead.
