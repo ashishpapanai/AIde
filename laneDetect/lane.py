@@ -11,6 +11,13 @@ class Lane:
     def __init__(self, path):
         self.path = path
         self.util = Util()
+    
+    def run_img(self, path):
+        img = cv2.imread(path)
+        img = cv2.resize(img, (800, 600))
+        #self.detect(img)
+        cv2.imshow('Frame', img)
+
 
     def run(self, path):
         cap = cv2.VideoCapture(path)
@@ -90,7 +97,7 @@ class Lane:
             cv2.line(screen, (int(l2inx1), 600),
                      (int(l2inx2), 350), (0, 0, 0), 10)
 
-            #cv2.line(screen, (allxcor1, 600), (allxcor2,350), (255,0,0), 10)
+            cv2.line(screen, (allxcor1, 600), (allxcor2,350), (255,0,0), 10)
             turning = ""
 
             results = self.util.intersection([l1m, l1b], [l2m, l2b])
