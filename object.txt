@@ -1,2 +1,1 @@
-Careful, traffic light ahead.
-Careful, car ahead.
+Careful, chair ahead.
