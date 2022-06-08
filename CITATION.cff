@@ -1,8 +1,13 @@
+
+cff-version: 0.0.1
+message: "If you use this code, please cite it using these metadata."
+
 authors:
   - family-names: Papanai
     given-names: Ashish
   - family-names: Kaushik
     given-names: Harsh
-cff-version: 0.0.1
-message: "If you use this code, please cite it using these metadata."
-title: "Road Vision AI"
+title: "Hybrid Image Processing Device as Wearable Aide for Visually Impaired"
+version: 1.0.0
+doi: 10.1109/ICACCS54159.2022.9785118
+date-released: 2022-06-07
